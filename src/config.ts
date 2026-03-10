@@ -25,32 +25,42 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "Multilingual CRM AI Assistant & Analytics Chatbot",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "An internal AI-powered chatbot designed for a custom CRM web application to replace a third-party analytics tool and reduce external dependencies and costs. The system interprets natural language queries using transformer-based semantic embeddings and spaCy NLP models to understand user intent across multiple languages (English, Polish, German). It enables users to retrieve analytics, execute SQL-based insights, and generate operational reports directly through conversational interaction. The assistant integrates with Microsoft SQL Server and SSRS to run stored procedures, perform data lookups, and dynamically generate downloadable Excel or PDF reports on demand. The solution also supports conversational context, smart suggestions, fuzzy matching, and automated report parameter collection to streamline business intelligence workflows inside the CRM.",
+      //link: "https://aidevroundup.com/?ref=devportfolio",
+      skills: [
+              "Python",
+              "Sentence Transformers",
+              "spaCy",
+              "NLP",
+              "PyODBC",
+              "SQL Server",
+              "SSRS",
+              "REST API",
+              "OpenPyXL"
+            ],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Web CRM Reporting ETL Automation (Selenium + Python)",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "A Python-based automation tool that extracts reports from a web-based CRM system. Using Selenium, the script logs into the CRM and reporting portals, generates branch-specific reports when they are not yet available, and downloads them automatically. The data is then transformed using pandas and loaded into a Microsoft SQL Server database via pyodbc, creating a complete automated ETL pipeline for CRM reporting.",
+      //link: "https://fullstackextensions.com/?ref=devportfolio",
+      skills: ["Python", "Selenium", "Pandas", "SQL Server", "PyODBC", "ETL"],
     },
     {
-      name: "ExtensionKit",
+      name: "Prediction of Gamers Behaviour Using Big Data Technology: A Data-Driven Approach to Identifying Gamification System Triggers for Enhancing Player Engagement and Incentivized Advertising",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "The project helped examine how to optimize the timing and exposure of gamification elements in mobile games, addressing a gap in existing gamification research. Using data collected from users across two mobile games via TensorFlow-based image recognition, the study applies a Variable Order Markov Model (VOMM) to analyze player behavior sequences. The results show that VOMM can effectively predict future user actions and identify event patterns that lead to desired outcomes. The research demonstrates practical applications of VOMM for mobile gaming analytics and proposes a method for integrating gamification triggers into third-party tools to improve user engagement.",
+      //link: "https://extensionkit.io/?ref=devportfolio",
+      skills: ["Python", "R", "A/B testing", "Apache Kafka", "Apache Hadoop", "Pickle", "OpenCV", "Tensorflow", "Pytube", "Numpy", "Pandas", "Matplot"],
     },
     {
-      name: "ExtensionKit",
+      name: "Automatic Youtube and Twitch Video Frame Scrapper",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "A Python-based automation tool for collecting gameplay data from video distribution platforms. The program accesses platform video lists, downloads selected videos, and splits them into frames at configurable time intervals. Each frame is then processed using a pre-trained image recognition model stored in a pickle file to detect relevant in-game events. The entire workflow runs automatically, enabling efficient extraction of gameplay sequences for further analytics and modeling.",
+        //link: "https://extensionkit.io/?ref=devportfolio",
+      skills: ["Python", "Pickle", "OpenCV", "Tensorflow", "Pytube", "Numpy", "Scrapping"],
     },
   ],
   experience: [
