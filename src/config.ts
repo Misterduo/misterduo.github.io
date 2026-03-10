@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Nazar Moshkun",
-  title: "Data Engineer | Database Architect| Cloud Analytics",
+  title: "Data Engineer | Database Architect | Cloud Analytics",
   description: "Coding Portfolio & Blog",
   accentColor: "#1d4ed8",
   social: {
@@ -24,6 +24,24 @@ export const siteConfig = {
     "Looker"
   ],
   projects: [
+    {
+      name: "AI Event Discovery & Venue Web Assistant",
+      description:
+        "AI-powered conversational assistant for an event discovery and venue management platform. The system interprets natural language queries to recommend events, venues, and nearby restaurants using Gemini-based intent extraction and structured JSON responses. It integrates with Google Places for location-based suggestions and a SQL database for event and venue data. The backend manages conversational context, follow-up queries, and fallback NLP models for resilience when the primary AI model is unavailable.",
+      //link: "https://aidevroundup.com/?ref=devportfolio",
+      skills: [
+              "Python",
+              "Gemini API",
+              "Vertex AI",
+              "GCP Cloud Run",
+              "Cloud SQL",
+              "Sentence Transformers",
+              "NLP",
+              "Google Places API",
+              "REST APIs",
+              "SQL"
+            ]
+    },
     {
       name: "Multilingual CRM AI Assistant & Analytics Chatbot",
       description:

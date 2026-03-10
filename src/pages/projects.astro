@@ -8,142 +8,151 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    <title>Projects</title>
+    <meta name="description" content={siteConfig.description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Projects | {siteConfig.name}</title>
   </head>
 
   <body>
 
     <Header />
 
-    <section class="p-8 sm:p-12 md:p-16 lg:p-24">
+    <main>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24">
 
-        <!-- LEFT TITLE COLUMN -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
-        <div class="lg:col-span-4">
+          <!-- LEFT TITLE COLUMN -->
+          <div class="lg:col-span-4">
 
-        <a href="/" class="text-gray-600 hover:text-black mb-6 inline-block">
-            ← Back
-        </a>
+            <a href="/" class="text-gray-600 hover:text-black mb-6 inline-block">
+              ← Back
+            </a>
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-            IT Projects
-        </h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+              IT Projects
+            </h1>
 
-          <div
-            class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
-          />
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
 
-        </div>
+          </div>
 
+          <!-- PROJECT LIST -->
+          <div class="lg:col-span-8">
 
-        <!-- PROJECT LIST -->
+            <div class="space-y-8">
 
-        <div class="lg:col-span-8">
+              {siteConfig.projects.map((project, index) => {
 
-          <div class="space-y-8">
+                const Component = project.link ? "a" : "div";
 
-            {siteConfig.projects.map((project, index) => {
+                const linkProps = project.link
+                  ? {
+                      href: project.link,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : {};
 
-              const Component = project.link ? "a" : "div";
+                return (
 
-              const linkProps = project.link
-                ? {
-                    href: project.link,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  }
-                : {};
+                  <div class="group relative">
 
-              return (
+                    <Component
+                      {...linkProps}
+                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
+                        project.link
+                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
+                          : ""
+                      }`}
+                    >
 
-                <div class="group relative">
+                      {project.link && (
+                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
 
-                  <Component
-                    {...linkProps}
-                    class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
-                      project.link
-                        ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                        : ""
-                    }`}
-                  >
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M7 17L17 7M17 7H7M17 7V17"
+                            />
+                          </svg>
 
-                    {project.link && (
-                      <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
+                        </div>
+                      )}
 
-                        <svg
-                          class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M7 17L17 7M17 7H7M17 7V17"
-                          />
-                        </svg>
+                      <div class="space-y-4">
 
-                      </div>
-                    )}
+                        <div>
 
-                    <div class="space-y-4">
+                          <span
+                            class="text-sm font-mono"
+                            style={{ color: siteConfig.accentColor }}
+                          >
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
 
-                      <div>
-
-                        <span
-                          class="text-sm font-mono"
-                          style={{ color: siteConfig.accentColor }}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-                          {project.name}
-                        </h3>
-
-                      </div>
-
-
-                      {project.skills && project.skills.length > 0 && (
-
-                        <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-
-                          {project.skills.map((skill) => (
-
-                            <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium">
-
-                              {skill}
-
-                            </span>
-
-                          ))}
+                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+                            {project.name}
+                          </h3>
 
                         </div>
 
-                      )}
+                        {project.skills && project.skills.length > 0 && (
 
-                    </div>
+                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
 
-                  </Component>
+                            {project.skills.map((skill) => (
 
-                </div>
+                              <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium">
+                                {skill}
+                              </span>
 
-              );
+                            ))}
 
-            })}
+                          </div>
+
+                        )}
+
+                      </div>
+
+                    </Component>
+
+                  </div>
+
+                );
+
+              })}
+
+            </div>
 
           </div>
 
         </div>
 
-      </div>
+      </section>
 
-    </section>
+    </main>
 
     <Footer />
 
