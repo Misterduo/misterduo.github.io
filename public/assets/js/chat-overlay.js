@@ -10,6 +10,9 @@
     return v;
   })();
 
+  const CHAT_HTML_KEY = "tar_chat_html";
+  const OPEN_KEY = "tar_chat_open";
+
   function el(tag, attrs = {}, children = []) {
     const n = document.createElement(tag);
     Object.entries(attrs).forEach(([k, v]) => {
@@ -25,6 +28,10 @@
 
   function ensureUI() {
     if (document.getElementById("tar-chat-toggle")) return;
+
+    function persistChat() {
+      localStorage.setItem(CHAT_HTML_KEY, body.innerHTML);
+    }
 
     // Toggle button
     const btn   = el("button", { id: "tar-chat-toggle", title: "Open PSA" }, "✳");
@@ -43,16 +50,40 @@
     panel.append(header, body, input);
     document.body.append(btn, panel);
 
+    /* ------------------------------
+      Restore previous conversation
+    ------------------------------ */
+
+    const saved = localStorage.getItem(CHAT_HTML_KEY);
+
+    if (saved) {
+      body.innerHTML = saved;
+    }
+
+    requestAnimationFrame(() => {
+      body.scrollTop = body.scrollHeight;
+    });
+
+    /* ------------------------------
+      Restore panel open state
+    ------------------------------ */
+
+    if (localStorage.getItem(OPEN_KEY) === "1") {
+      panel.style.display = "flex";
+    }
+
     // Toggle show/hide using inline display (flex/none) to preserve layout
     const toggle = () => {
       const isHidden = panel.style.display === "none" || getComputedStyle(panel).display === "none";
+
       if (isHidden) {
-        panel.style.display = "flex";      // show as flex (matches CSS layout)
+        panel.style.display = "flex";
+        localStorage.setItem(OPEN_KEY, "1");
         ta.focus();
-        // scroll to bottom after render
         requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
       } else {
-        panel.style.display = "none";      // hide
+        panel.style.display = "none";
+        localStorage.setItem(OPEN_KEY, "0");
       }
     };
     btn.addEventListener("click", toggle);
@@ -65,6 +96,8 @@
         row.append(bub);
         body.append(row);
         body.scrollTop = body.scrollHeight;
+
+        persistChat();
       },
       addCard(node) {
         const row = el("div", { class: "tar-row" });
@@ -73,6 +106,8 @@
         row.append(card);
         body.append(row);
         body.scrollTop = body.scrollHeight;
+
+        persistChat();
       },
       send(msg) {
         return fetch(API_BASE + "/chat", {
@@ -196,6 +231,7 @@
 
       // 5) Plain text
       const txt = (typeof rep === "string") ? rep : (rep && rep.text) || JSON.stringify(rep);
+
       Chat.addBubble(txt, "assist");
     }
 
