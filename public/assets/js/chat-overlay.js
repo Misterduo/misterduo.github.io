@@ -1,5 +1,5 @@
 (() => {
-  const API_BASE = window.TAR_API_BASE || "https://tar-api.yourdomain.com"; // set in layout
+  const API_BASE = window.TAR_API_BASE || "https://moshking-portfolio-assistant.hf.space"; // set in layout
   const SID = (() => {
     const k = "tar_sid";
     let v = localStorage.getItem(k);
@@ -79,7 +79,12 @@
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: msg, session_id: SID })
-        }).then(r => r.json());
+        })
+        .then(r => {
+          if (!r.ok) throw new Error("API error");
+          return r.json();
+        })
+        .catch(() => ({ text: "Assistant is temporarily unavailable." }));
       },
     };
 
