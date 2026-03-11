@@ -1,5 +1,5 @@
 (() => {
-  const API_BASE = window.TAR_API_BASE || "https://moshking-portfolio-assistant.hf.space"; // set in layout
+  const API_BASE = window.TAR_API_BASE = "https://moshking-portfolio-assistant.hf.space"; // set in layout
   const SID = (() => {
     const k = "tar_sid";
     let v = localStorage.getItem(k);
