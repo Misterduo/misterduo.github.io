@@ -149,7 +149,35 @@
         if (rep.text) wrap.append(el("div", {}, rep.text));
         const list = el("div", { class: "tar-list" });
         rep.links.forEach(([label, url]) => {
-          list.append(el("a", { href: url, target: "_blank", rel: "noopener" }, label));
+
+          const link = el("a", { href: url }, label);
+
+          // If it's an anchor (#experience, #projects)
+          if (url.startsWith("#")) {
+
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+
+              const target = document.querySelector(url);
+
+              if (target) {
+                target.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }
+            });
+
+          } else {
+
+            // External link → open new tab
+            link.setAttribute("target", "_blank");
+            link.setAttribute("rel", "noopener");
+
+          }
+
+          list.append(link);
+
         });
         wrap.append(list);
         Chat.addCard(wrap);
